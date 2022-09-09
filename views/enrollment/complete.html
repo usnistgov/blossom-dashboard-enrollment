@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Agency Enrollment Form{% endblock %}
+
+{% block content %}
+
+    <h2>Your enrollment has been submitted.</h2>
+
+    <p>Proposal ID: {{ enrollment.proposal_id }}</p>
+
+    <h3>Agency: {{ enrollment.agency }}</h3>
+
+    <h3>Stakeholders</h3>
+    <ul>
+        <li>System Owner: {{ enrollment.system_owner }}</li>
+        <li>Assessor: {{ enrollment.assessor }}</li>
+        <li>Software Administrator: {{ enrollment.software_admin }}</li>
+        <li>Acquisition Officer: {{ enrollment.acquisition_officer }}</li>
+    </ul>
+
+    <h3>AWS Account Association: {{ enrollment.agency_aws_account_id }}</h3>
+
+    <h3>Rules of Behavior: {{ enrollment.rules_of_behavior_accepted }}</h3>
+
+{% endblock %}
+
+
+

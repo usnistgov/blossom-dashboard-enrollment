@@ -1,0 +1,20 @@
+{
+  "name": "blossom-dashboard-enrollment",
+  "version": "0.0.1",
+  "description": "UI Test Scripts",
+  "main": "cypress.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@uswds/compile": "^1.0.0-beta.3",
+    "@uswds/uswds": "^3.0",
+    "cypress": "^10.2.0"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "author": "",
+  "license": ""
+}

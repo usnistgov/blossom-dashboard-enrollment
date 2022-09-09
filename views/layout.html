@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="{{ url_for('assets', path='/uswds/js/uswds-init.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('assets', path='/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('assets', path='/custom.css') }}" />
+  </head>
+  <body>
+    <script src="{{ url_for('assets', path='/uswds/js/uswds.min.js') }}"></script>
+
+    <div class="usa-overlay"></div>
+    <header class="usa-header usa-header--basic">
+      <div class="usa-nav-container">
+        <div class="usa-navbar">
+          <div class="usa-logo" id="-logo">
+            <em class="usa-logo__text"><a href="/" title="Enrollment Dashboard">Enrollment Dashboard</a></em>
+          </div>
+          <button class="usa-menu-btn">Menu</button>
+        </div>
+        <nav aria-label="Primary navigation" class="usa-nav">
+          <button class="usa-nav__close">
+            <img src="{{ url_for('assets', path='/uswds/img/usa-icons/close.svg') }}" role="img" alt="Close" />
+          </button>
+          <ul class="usa-nav__primary usa-accordion">
+            <li class="usa-nav__primary-item">
+              <button
+                class="usa-accordion__button usa-nav__link usa-current"
+                aria-expanded="false"
+                aria-controls="basic-nav-section-one"
+              >
+                <span>Documentation</span>
+              </button>
+              <ul id="basic-nav-section-one" class="usa-nav__submenu">
+                <li class="usa-nav__submenu-item">
+                  <a href="/docs"><span>API Specification</span></a>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </nav>
+      </div>
+    </header>
+
+    <hr/>
+
+    <div class="grid-container">{% block content %}{% endblock %}</div>
+    
+  </body>
+</html>
+
+
+

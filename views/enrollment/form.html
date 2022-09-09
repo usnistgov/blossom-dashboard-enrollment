@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}Agency Enrollment Form{% endblock %}
+
+{% block content %}
+<form method="POST" action="/enroll" class="usa-form usa-form--large">
+    <fieldset class="usa-fieldset">
+        <legend class="usa-legend usa-legend--large">Enrollment</legend>
+
+        <p> All fields are required on this form.
+            <!-- Required fields are marked with an asterisk (<abbr
+            title="required"
+            class="usa-hint usa-hint--required"
+            >*</abbr
+            >). -->
+        </p>
+
+        <div>{{ form.agency.label }}: {{ form.agency(class="usa-input") }}</div>
+        {% if form.agency.errors %}
+            <ul class="errors">{% for error in form.agency.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+    
+    
+        <h3 class="site-preview-heading">Stakeholders</h3>
+
+        <div>{{ form.system_owner.label }}: {{ form.system_owner(class="usa-input") }}</div>
+        {% if form.system_owner.errors %}
+            <ul class="errors">{% for error in form.system_owner.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.assessor.label }}: {{ form.assessor(class="usa-input") }}</div>
+        {% if form.assessor.errors %}
+            <ul class="errors">{% for error in form.assessor.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.software_admin.label }}: {{ form.software_admin(class="usa-input") }}</div>
+        {% if form.software_admin.errors %}
+            <ul class="errors">{% for error in form.software_admin.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.acquisition_officer.label }}: {{ form.acquisition_officer(class="usa-input") }}</div>
+        {% if form.acquisition_officer.errors %}
+            <ul class="errors">{% for error in form.acquisition_officer.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <h3 class="site-preview-heading">AWS Account Association</h3>
+
+        <div>{{ form.agency_aws_account_id.label }}: {{ form.agency_aws_account_id(class="usa-input") }}</div>
+        {% if form.agency_aws_account_id.errors %}
+            <ul class="errors">{% for error in form.agency_aws_account_id.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <h3 class="site-preview-heading">Required Agreements</h3>
+
+        <div class="usa-checkbox">
+            {{ form.rules_of_behavior_accepted(class="usa-checkbox__input usa-checkbox__input--tile", id="rob-acceptance") }}
+            <label class="usa-checkbox__label" for="rob-acceptance">Rules Of Behavior
+              <span class="usa-checkbox__label-description">{{ form.rules_of_behavior_accepted.label }}</span>
+            </label>
+        </div>
+        {% if form.rules_of_behavior_accepted.errors %}
+            <ul class="errors">{% for error in form.rules_of_behavior_accepted.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+   
+
+        <h3 class="site-preview-heading"></h3>
+    
+        {{ form.submit(class="usa-input usa-input--medium") }}
+    </fieldset>
+</form>
+{% endblock %}
