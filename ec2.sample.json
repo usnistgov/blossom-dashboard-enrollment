@@ -1,0 +1,23 @@
+{
+    "DryRun": true,
+    "AdditionalInfo": "Just for demonstration of the enrollment dashboard.",
+    "ImageId": "[...]",
+    "KeyName": "[...]",
+    "MaxCount": 1,
+    "MinCount": 1,
+    "SubnetId": "[...]",
+    "SecurityGroupIds": [
+        "[...]"
+    ],
+    "IamInstanceProfile": {
+        "Name": "[...]"
+    },
+    "InstanceType": "t2.micro",
+    "Monitoring": {
+        "Enabled": false
+    },
+    "Placement": {
+        "AvailabilityZone": "[...]",
+        "Tenancy": "default"
+    }
+}
