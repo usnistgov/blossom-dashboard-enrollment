@@ -1,4 +1,5 @@
-import boto3, dotenv, os
+import re
+import boto3, dotenv, os, requests
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -18,7 +19,15 @@ class Action(object):
     def create_proposal(self, enrollment):
 
         try:
-            client = boto3.client('managedblockchain')
+            session = requests.get(f"{os.environ.get('AUTH_HOST')}{os.environ.get('AUTH_PATH')}")
+            session_config = session.json()
+
+            client = boto3.client('managedblockchain',
+                            region_name=os.environ.get('AWS_REGION'),
+                            aws_access_key_id=session_config['AccessKeyId'],
+                            aws_secret_access_key=session_config['SecretAccessKey'],
+                            aws_session_token=session_config['Token']
+                        )
 
             proposal = enrollment.dict()
             proposal.pop("proposal_id", None)
