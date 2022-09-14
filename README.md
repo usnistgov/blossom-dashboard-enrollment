@@ -1,4 +1,4 @@
-# Service Administration Dashboard (SAD) - Enrollment
+# BloSS@M Enrollment Dashboard
 
 > [Requirements Defined in Issue 57](https://github.com/usnistgov/blossom/issues/57)
 
