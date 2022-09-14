@@ -12,6 +12,7 @@
     "cypress": "^10.2.0"
   },
   "scripts": {
+    "build": "npx gulp init",
     "test": "cypress run",
     "cypress:open": "cypress open"
   },

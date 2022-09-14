@@ -1,1 +1,0 @@
-docker-compose -f compose/docker-compose.yml --profile=development up

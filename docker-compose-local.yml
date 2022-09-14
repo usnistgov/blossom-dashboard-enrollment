@@ -2,12 +2,15 @@ version: '3.9'
 services:
   enrollment-dashboard:
     image: python:3.10-alpine
+    environment:
+      - AWS_SHARED_CREDENTIALS_FILE=/.aws/credentials
+      - AWS_PROFILE=saml
     working_dir: /code
     ports:
       - "10000:10000"
     volumes:
       - ./:/code
-      - ${HOME}/.env:/.env
+      - ${HOME}/.aws/credentials:/.aws/credentials
     entrypoint: ["/bin/sh","run.sh"]
 
   # docker-compose -f compose/docker-compose.yml --profile=development up
