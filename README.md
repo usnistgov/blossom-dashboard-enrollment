@@ -9,7 +9,6 @@
 #### Initialize Virtual Environment (For New Environment)
 
 ```
-cd blossom-dashboard-enrollment
 python -m venv .nist-py-env
 ```
 
@@ -45,8 +44,33 @@ python app.py
 python app.py test
 ```
 
-### Running the Application Programming Interface (API)
+### Running the Application Programming Interface (API) Locally
+
+This method requires you to set up a local credential file for AWS if you want to create the actual proposals in AWS.
+
+Set up requires the [blossom](https://github.com/usnistgov/blossom) repository is similar to:
 
 ```
-.nist-py-env/bin/uvicorn api:enroller --reload --host 0.0.0.0 --port 10000
+python3 /Code/blossom/util/aws_saml_auth.py
+cat /Users/dcc9/.aws/credentials
+export AWS_PROFILE='saml'
+aws --profile saml sts get-caller-identity
+```
+
+```
+docker-compose -f docker-compose-local.yml up
+```
+
+or with any development services/features:
+
+```
+docker-compose -f docker-compose-local.yml --profile=development up
+```
+
+### Running in the AWS Environment
+
+This method will request a token when the proposal is being created. This is configured using the .env referenced in docker-compose.yaml.  The format is shown in `sample.env`.  The default location is `~/.env`.
+
+```
+docker-compose up -d
 ```
