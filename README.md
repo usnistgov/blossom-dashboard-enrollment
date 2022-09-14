@@ -52,7 +52,7 @@ Set up requires the [blossom](https://github.com/usnistgov/blossom) repository i
 
 ```
 python3 /Code/blossom/util/aws_saml_auth.py
-cat /Users/dcc9/.aws/credentials
+cat ~/.aws/credentials
 export AWS_PROFILE='saml'
 aws --profile saml sts get-caller-identity
 ```
