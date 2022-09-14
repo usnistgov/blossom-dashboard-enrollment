@@ -1,20 +1,31 @@
-import re
-import boto3, dotenv, os, requests
+import boto3
+import os
+import requests
+
+from botocore.exceptions import ClientError
+from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
-from pydantic import BaseModel, ValidationError
-from botocore.exceptions import ClientError
-
-r"""Enrollment Dashboard: Command Line Interface"""
-
-
-class Action(object):
+class Action:
     """Access to the Enrollment Dashboard actions class via terminal."""
     def test(self):
         """Test Output: Just prints 'Testing'"""
         print("Testing")
 
+    def check(self):
+        if os.environ.get('AWS_PROFILE') == 'saml':
+            print("AWS_PROFILE is set to 'saml'. Using Local Environment.")
+            file_path = "~/.aws/credentials"
+            file_status = Path(file_path)
+            if not file_status.is_file():
+                print(f"Problem: Could not find credentials file. ({file_path})")
+        else:
+            print("AWS_PROFILE is NOT set to 'saml'. Using AWS Environment.")
+            file_path = "~/.env"
+            file_status = Path(file_path)
+            if not file_status.is_file():
+                print(f"Problem: Could not find environment file. ({file_path})")
 
     def create_proposal(self, enrollment):
 
@@ -25,7 +36,7 @@ class Action(object):
                 client = boto3.client('managedblockchain')
             else:
                 print("Using AWS Environment")
-                session = requests.get(f"{os.environ.get('AUTH_HOST')}{os.environ.get('AUTH_PATH')}")
+                session = requests.get(f"{os.environ.get('AUTH_HOST')}{os.environ.get('AUTH_PATH')}", timeout=20)
                 session_config = session.json()
 
                 client = boto3.client('managedblockchain',
@@ -65,9 +76,5 @@ class Action(object):
             
         if response['ResponseMetadata']['HTTPStatusCode'] == 200:
             return response
-        else:
-            return None
 
-
-
-        
+        return None

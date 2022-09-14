@@ -7,5 +7,5 @@ import fire
 from action import Action
 
 if __name__ == '__main__':
-  respond = Action()
-  fire.Fire(respond)
+    respond = Action()
+    fire.Fire(respond)

@@ -11,7 +11,7 @@ from action import Action
 from enrollment.router import enrollment_router
 
 respond = Action()
-description = Path("README.md").read_text()
+description = Path("README.md").read_text(encoding='utf-8')
 enroller = FastAPI(
     title="Enrollment Dashboard",
     description=description,
@@ -35,13 +35,12 @@ def read_root():
     return RedirectResponse("/enroll")
 
 @enroller.get("/status")
-def read_root():
+def read_status():
     return RedirectResponse("/assets/index.html")
 
 @enroller.get("/about")
-def read_root():
+def read_about():
     return RedirectResponse("/docs")
 
-enroller.include_router(enrollment_router)
-    
 
+enroller.include_router(enrollment_router)

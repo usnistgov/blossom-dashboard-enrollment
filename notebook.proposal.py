@@ -1,3 +1,4 @@
+#pylint: disable=pointless-statement
 #%% Load Library
 from enrollment.model import Enrollment
 from action import Action

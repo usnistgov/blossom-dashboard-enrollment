@@ -1,12 +1,11 @@
 import os
-from re import M
 from action import Action
 
 from fastapi import APIRouter, Form, Request, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from pydantic import BaseModel, ValidationError
+from pydantic import ValidationError
 
 from enrollment.model import Enrollment
 from enrollment.form import EnrollmentForm
@@ -25,6 +24,7 @@ async def read_item(request: Request):
     form = EnrollmentForm()
     return views.TemplateResponse("enrollment/form.html", { "request": request, "form": form })
 
+#pylint: disable=too-many-arguments
 @enrollment_router.post("/enroll")
 async def enroll(
         request: Request, 
@@ -54,11 +54,10 @@ async def enroll(
         if result:
             enrollment.proposal_id = result['ProposalId']
             return views.TemplateResponse("enrollment/complete.html", { "request": request, "enrollment": enrollment })
-        else:
-            raise HTTPException(status_code=500, detail="Proposal creation with the provider was not successful.")
+
+        raise HTTPException(status_code=500, detail="Proposal creation with the provider was not successful.")
     except ValidationError as e:
-        print(str(e))
-        raise HTTPException(status_code=500, detail="The enrollment request could not be completed.")
+        raise HTTPException(status_code=500, detail="The enrollment request could not be completed.") from e
 
 
 

@@ -1,10 +1,10 @@
 import re
-from fastapi import FastAPI
 from pydantic import BaseModel, validator
 
 enrollment_tag_validation = {
     'pattern': r"^[A-Za-z0-9]+[ A-Za-z0-9\_\.\:\/\=\+\-]{0,127}$",
-    'message': "Is not an AWS Blockhain compatible tag. Tag keys can be a maximum of 128 characters and contain only unicode letters, digits, whitespace, and the following characters: _.:/=+-"
+    'message': "Is not an AWS Blockhain compatible tag. Tag keys can be a maximum of 128 characters " \
+               "and contain only unicode letters, digits, whitespace, and the following characters: _.:/=+-"
 }
 
 class Enrollment(BaseModel):
@@ -44,6 +44,3 @@ class Enrollment(BaseModel):
                 "proposal_id": ""
             }
         }
-
-
-
