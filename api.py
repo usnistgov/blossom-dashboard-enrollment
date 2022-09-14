@@ -34,10 +34,6 @@ else:
 def read_root():
     return RedirectResponse("/enroll")
 
-@enroller.get("/status")
-def read_status():
-    return RedirectResponse("/assets/index.html")
-
 @enroller.get("/about")
 def read_about():
     return RedirectResponse("/docs")

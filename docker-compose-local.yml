@@ -13,7 +13,7 @@ services:
       - ${HOME}/.aws/credentials:/.aws/credentials
     entrypoint: ["/bin/sh","run.sh"]
 
-  # docker-compose -f compose/docker-compose.yml --profile=development up
+  # docker-compose -f docker-compose-local.yml --profile=development up
   testing-framework:
     image: cypress/base:latest
     ipc: host

@@ -11,6 +11,7 @@ from enrollment.model import Enrollment
 from enrollment.form import EnrollmentForm
 
 enrollment_router = APIRouter()
+
 do = Action()
 
 if os.path.exists("views"):
@@ -55,9 +56,10 @@ async def enroll(
             enrollment.proposal_id = result['ProposalId']
             return views.TemplateResponse("enrollment/complete.html", { "request": request, "enrollment": enrollment })
 
-        raise HTTPException(status_code=500, detail="Proposal creation with the provider was not successful.")
+        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": "Proposal creation with the provider was not successful." }, status_code=500)
     except ValidationError as e:
-        raise HTTPException(status_code=500, detail="The enrollment request could not be completed.") from e
+        # raise HTTPException(status_code=500, detail="The enrollment request could not be completed.") from e
+        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": "The enrollment request could not be completed." }, status_code=500)
 
 
 
