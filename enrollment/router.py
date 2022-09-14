@@ -1,7 +1,7 @@
 import os
 from action import Action
 
-from fastapi import APIRouter, Form, Request, HTTPException
+from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -56,10 +56,12 @@ async def enroll(
             enrollment.proposal_id = result['ProposalId']
             return views.TemplateResponse("enrollment/complete.html", { "request": request, "enrollment": enrollment })
 
-        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": "Proposal creation with the provider was not successful." }, status_code=500)
+        response = "Proposal creation with the provider was not successful."
+        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": response }, status_code=500)
     except ValidationError as e:
         # raise HTTPException(status_code=500, detail="The enrollment request could not be completed.") from e
-        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": "The enrollment request could not be completed." }, status_code=500)
+        response = f"The enrollment request could not be completed. {e}"
+        return views.TemplateResponse("enrollment/error.html", { "request": request, "detail": response }, status_code=500)
 
 
 
