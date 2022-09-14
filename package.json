@@ -14,6 +14,7 @@
   "scripts": {
     "build": "npx gulp init",
     "test": "cypress run",
+    "test-install": "cypress install",
     "cypress:open": "cypress open"
   },
   "author": "",
