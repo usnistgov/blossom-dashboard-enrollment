@@ -6,7 +6,7 @@ fire>=0.4.0
 Jinja2>=3.1.2
 pydantic==1.10.13
 pytest>=7.1.2
-python-dotenv==0.20.0
+python-dotenv==1.2.2
 python-multipart>=0.0.5
 requests==2.32.4
 simplejson>=3.17.6
