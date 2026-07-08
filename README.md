@@ -1,3 +1,5 @@
+NOTE: This repository is archived and read-only.
+
 # BloSS@M Enrollment Dashboard
 
 > [Requirements Defined in Issue 57](https://github.com/usnistgov/blossom/issues/57)
